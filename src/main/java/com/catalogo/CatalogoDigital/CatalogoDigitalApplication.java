@@ -10,8 +10,8 @@ public class CatalogoDigitalApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(CatalogoDigitalApplication.class, args);
 
-		// Inicializar la base de datos al iniciar la aplicación
+
 		DatabaseInitializer.initialize();
-		System.out.println("Base de datos SQLite inicializada correctamente.");
+		System.out.println("✅ Base de datos SQLite inicializada correctamente.");
 	}
 }

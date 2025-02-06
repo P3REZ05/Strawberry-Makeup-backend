@@ -2,8 +2,8 @@ package com.catalogo.CatalogoDigital.service;
 
 import com.catalogo.CatalogoDigital.model.Product;
 import com.catalogo.CatalogoDigital.config.DatabaseConnection;
-
 import org.springframework.stereotype.Service;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -28,19 +28,18 @@ public class ProductService {
                 product.setName(rs.getString("name"));
                 product.setDescription(rs.getString("description"));
                 product.setPrice(rs.getDouble("price"));
-                product.setImageUrl(rs.getString("imageUrl"));
+                product.setImage(rs.getString("image"));
                 product.setCategory(rs.getString("category"));
                 products.add(product);
             }
         } catch (SQLException e) {
-            e.printStackTrace();
+            System.err.println("❌ Error al obtener productos: " + e.getMessage());
         }
-
         return products;
     }
 
     public void saveProduct(Product product) {
-        String sql = "INSERT INTO products (name, description, price, imageUrl, category) VALUES (?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO products (name, description, price, image, category) VALUES (?, ?, ?, ?, ?)";
 
         try (Connection conn = DatabaseConnection.getConnection();
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
@@ -48,11 +47,12 @@ public class ProductService {
             pstmt.setString(1, product.getName());
             pstmt.setString(2, product.getDescription());
             pstmt.setDouble(3, product.getPrice());
-            pstmt.setString(4, product.getImageUrl());
+            pstmt.setString(4, product.getImage());
             pstmt.setString(5, product.getCategory());
             pstmt.executeUpdate();
+            System.out.println("✅ Producto guardado correctamente.");
         } catch (SQLException e) {
-            e.printStackTrace();
+            System.err.println("❌ Error al guardar producto: " + e.getMessage());
         }
     }
 }
