@@ -47,7 +47,7 @@ public class ProductService {
             pstmt.setString(1, product.getName());
             pstmt.setString(2, product.getDescription());
             pstmt.setDouble(3, product.getPrice());
-            pstmt.setString(4, product.getImage());
+            pstmt.setString(4, product.getImage()); // URL de la imagen
             pstmt.setString(5, product.getCategory());
             pstmt.executeUpdate();
             System.out.println("✅ Producto guardado correctamente.");

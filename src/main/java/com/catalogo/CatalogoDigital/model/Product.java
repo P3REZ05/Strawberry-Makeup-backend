@@ -5,9 +5,10 @@ public class Product {
     private String name;
     private String description;
     private double price;
-    private String image;
+    private String image; // URL de la imagen
     private String category;
 
+    // Constructor, getters y setters
     public Product() {}
 
     public Product(int id, String name, String description, double price, String image, String category) {
