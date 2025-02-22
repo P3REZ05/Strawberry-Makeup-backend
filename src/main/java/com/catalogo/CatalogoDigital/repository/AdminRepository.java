@@ -2,6 +2,7 @@ package com.catalogo.CatalogoDigital.repository;
 
 import com.catalogo.CatalogoDigital.config.DatabaseConnection;
 import com.catalogo.CatalogoDigital.model.Admin;
+import org.springframework.stereotype.Repository;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -11,6 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+@Repository
 public class AdminRepository {
 
     public void addAdmin(Admin admin) {

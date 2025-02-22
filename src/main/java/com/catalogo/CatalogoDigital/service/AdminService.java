@@ -2,6 +2,7 @@ package com.catalogo.CatalogoDigital.service;
 
 import com.catalogo.CatalogoDigital.model.Admin;
 import com.catalogo.CatalogoDigital.repository.AdminRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -10,7 +11,8 @@ import java.util.Optional;
 @Service
 public class AdminService {
 
-    private final AdminRepository adminRepository = new AdminRepository();
+    @Autowired
+    private AdminRepository adminRepository;
 
     public void addAdmin(Admin admin) {
         adminRepository.addAdmin(admin);

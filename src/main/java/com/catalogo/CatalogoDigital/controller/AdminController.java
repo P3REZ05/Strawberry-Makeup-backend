@@ -6,7 +6,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/admin")
@@ -22,9 +24,19 @@ public class AdminController {
     }
 
     @PostMapping("/validate")
-    public ResponseEntity<Boolean> validateAdmin(@RequestBody Admin admin) {
+    public ResponseEntity<Map<String, Object>> validateAdmin(@RequestBody Admin admin) {
+        Map<String, Object> response = new HashMap<>();
+
         boolean isValid = adminService.validateAdmin(admin.getNombre(), admin.getContraseña());
-        return ResponseEntity.ok(isValid);
+
+        if (isValid) {
+            response.put("valid", true);
+            response.put("token", "admin-token-" + System.currentTimeMillis());
+            return ResponseEntity.ok(response);
+        } else {
+            response.put("valid", false);
+            return ResponseEntity.ok(response);
+        }
     }
 
     @GetMapping("/test")
